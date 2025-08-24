@@ -1,4 +1,4 @@
-package us.malfeasant.templatefx;
+package us.malfeasant.balls;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

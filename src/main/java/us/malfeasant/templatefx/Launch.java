@@ -1,5 +1,7 @@
 package us.malfeasant.templatefx;
 
+import us.malfeasant.balls.App;
+
 /**
  * This is a hack- rather than starting the JavaFX app directly,
  * we launch this class that then calls main on the App class.
