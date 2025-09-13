@@ -1,5 +1,8 @@
 package us.malfeasant.balls;
 
+import java.util.Arrays;
+import java.util.function.BiConsumer;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -62,9 +65,8 @@ public class App extends Application {
             public void handle(long now) {
                 int count = balls.length;
                 long time = now & 0xffffffffl;
-                for (int i = 0; i < count; ++i) {
-                    // TODO I vaguely remember a way to use a foreach loop
-                    // but still have access to an index... 
+                forEachWithCounter(Arrays.asList(balls), (i, ball) -> {
+//                Arrays.stream(balls).forEach(withCounter((i, ball) -> {
                     var phase = 2.0 * Math.PI * time / 0x100000000l;
                     var shift = Math.PI * i / count;
 
@@ -72,9 +74,9 @@ public class App extends Application {
                     var yComp = Math.sin(shift);
                     var offset = Math.sin(phase + shift);
 
-                    balls[i].setTranslateX(offset * xComp * 180);
-                    balls[i].setTranslateY(offset * yComp * 180);
-                }
+                    ball.setTranslateX(offset * xComp * 180);
+                    ball.setTranslateY(offset * yComp * 180);
+                });
             }
         };
 
@@ -86,4 +88,12 @@ public class App extends Application {
         launch();
     }
 
+    private static <T> void forEachWithCounter(Iterable<T> source, BiConsumer<Integer, T> consumer) {
+        int i = 0;
+
+        for (T item : source) {
+            consumer.accept(i, item);
+            ++i;
+        }
+    }
 }

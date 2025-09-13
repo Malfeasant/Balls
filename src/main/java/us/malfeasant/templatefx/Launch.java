@@ -10,6 +10,7 @@ import us.malfeasant.balls.App;
  */
 public class Launch {
     public static void main(String[] args) {
+        System.out.println("Running from Launch class");
         App.main(args);
     }
 }
