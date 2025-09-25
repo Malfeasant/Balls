@@ -7,9 +7,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
         <mainClass>us.malfeasant.templatefx.Launch</mainClass>
-        <javafx.version>21</javafx.version>
+        <mainModuleClass>us.malfeasant.balls/us.malfeasant.balls.App</mainModuleClass>
+        <javafx.version>11</javafx.version>
     </properties>
 
     <dependencies>
@@ -86,7 +87,10 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>${mainClass}</mainClass>
+                            <mainClass>${mainModuleClass}</mainClass>
+                            <jlinkImageName>${project.artifactId}</jlinkImageName>
+                            <jlinkZipName>${project.artifactId}</jlinkZipName>
+                            <launcher>${project.artifactId}</launcher>
                         </configuration>
                     </execution>
                 </executions>
